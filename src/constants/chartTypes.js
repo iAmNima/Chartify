@@ -1,0 +1,18 @@
+export const CHART_TYPES = [
+  'Bar',
+  'Line',
+  'Pie',
+  'Area',
+  'Scatter',
+  'Donut',
+  'Histogram',
+  'Bubble',
+  'Radar',
+  'Heatmap',
+  'Box Plot',
+  'Stacked Bar',
+  'Treemap',
+  'Sunburst',
+  'Gauge',
+  'Timeline',
+];
