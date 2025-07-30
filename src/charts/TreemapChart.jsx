@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const TreemapChart = ({ data, width = 600, height = 400 }) => {
+const TreemapChart = ({ title, data, width = 600, height = 400 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -41,7 +42,12 @@ const TreemapChart = ({ data, width = 600, height = 400 }) => {
       .attr('fill', 'white');
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default TreemapChart;

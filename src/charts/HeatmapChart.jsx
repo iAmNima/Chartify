@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const HeatmapChart = ({ data, width = 500, height = 400 }) => {
+const HeatmapChart = ({ title, data, width = 500, height = 400 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -54,7 +55,12 @@ const HeatmapChart = ({ data, width = 500, height = 400 }) => {
       .style('font-size', '10px');
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default HeatmapChart;

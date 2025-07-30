@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const SunburstChart = ({ data, width = 500, height = 500 }) => {
+const SunburstChart = ({ title, data, width = 500, height = 500 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -42,7 +43,12 @@ const SunburstChart = ({ data, width = 500, height = 500 }) => {
       .text((d) => `${d.data.name}\n${d.value}`);
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default SunburstChart;

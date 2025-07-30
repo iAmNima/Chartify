@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { Box, Text } from '@chakra-ui/react';
 
-const AreaChart = ({ title, xLabel, yLabel, data }) => {
+const AreaChart = ({ title, data }) => {
   const ref = useRef();
 
   useEffect(() => {

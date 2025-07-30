@@ -12,7 +12,7 @@ Return ONLY JSON like this:
 [
   {
     "type": "Bar",
-    "title": "Chart Title",
+    "title": "Average Temperature by Month", // the title concisely describes what the chart shows
     "xLabel": "X Axis Label",
     "yLabel": "Y Axis Label",
     "data": [ { "label": "A", "value": 123 }, ... ]
@@ -41,6 +41,7 @@ Instructions per chart type:
 Rules:
 - One chart object per type
 - Use realistic sample values
+- Provide a short title that clearly describes what the chart is showing
 - No explanation or markdown — JSON array only
 
 Topic: "${topic}"

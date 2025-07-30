@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { Box, Text } from '@chakra-ui/react';
 
-const ScatterPlot = ({ title, xLabel, yLabel, data }) => {
+const ScatterPlot = ({ title, data }) => {
   const ref = useRef();
 
   useEffect(() => {

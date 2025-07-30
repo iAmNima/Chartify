@@ -26,7 +26,8 @@ const DonutChart = ({ title, data }) => {
       .append('g')
       .attr('transform', `translate(${width / 2}, ${height / 2})`);
 
-    const arcs = chartGroup.selectAll('path')
+    chartGroup
+      .selectAll('path')
       .data(pie(data))
       .join('path')
       .attr('d', arc)
