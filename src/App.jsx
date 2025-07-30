@@ -11,12 +11,17 @@ import {
   Flex,
   Wrap,
   WrapItem,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from '@chakra-ui/react';
+import { RepeatIcon } from '@chakra-ui/icons';
 
 import ChartTypeSelector from './components/ChartTypeSelector';
 import ChartContainer from './components/ChartContainer';
 import generateChartData from './api/generateChartData';
 import suggestChartTypes from './api/suggestChartTypes';
+import getRandomQuestion from './api/getRandomQuestion';
 
 const App = () => {
   const [topic, setTopic] = useState('');
@@ -25,7 +30,25 @@ const App = () => {
   const [suggestedTypes, setSuggestedTypes] = useState([]);
   const [suggestionLoading, setSuggestionLoading] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [randomLoading, setRandomLoading] = useState(false);
   const toast = useToast();
+
+  const handleRandomQuestion = async () => {
+    setRandomLoading(true);
+    try {
+      const question = await getRandomQuestion();
+      setTopic(question);
+    } catch (err) {
+      toast({
+        title: 'Failed to fetch random question.',
+        description: err.message || 'Something went wrong.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+    setRandomLoading(false);
+  };
 
   // Debounced suggestion call
   useEffect(() => {
@@ -76,12 +99,23 @@ const App = () => {
         <Heading size="lg" textAlign="center">📊 Chartify</Heading>
 
         <Flex gap={3}>
-          <Input
-            placeholder="Enter a topic (e.g. population growth, climate change)"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            flex="1"
-          />
+          <InputGroup flex="1">
+            <Input
+              placeholder="Enter a topic (e.g. population growth, climate change)"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            />
+            <InputRightElement width="2.5rem">
+              <IconButton
+                aria-label="Random question"
+                icon={<RepeatIcon />}
+                size="sm"
+                variant="ghost"
+                onClick={handleRandomQuestion}
+                isLoading={randomLoading}
+              />
+            </InputRightElement>
+          </InputGroup>
           <Button
             colorScheme="teal"
             onClick={handleGenerate}
