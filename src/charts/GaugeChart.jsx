@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const GaugeChart = ({ data, width = 300, height = 180 }) => {
+const GaugeChart = ({ title, data, width = 300, height = 180 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -53,7 +54,12 @@ const GaugeChart = ({ data, width = 300, height = 180 }) => {
       .text(`${data.value}%`);
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default GaugeChart;

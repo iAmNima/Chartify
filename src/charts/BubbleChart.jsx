@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const BubbleChart = ({ data, width = 600, height = 300 }) => {
+const BubbleChart = ({ title, data, width = 600, height = 300 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -66,7 +67,12 @@ const BubbleChart = ({ data, width = 600, height = 300 }) => {
       .style('font-size', '10px');
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default BubbleChart;

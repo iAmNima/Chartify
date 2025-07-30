@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const TimelineChart = ({ data, width = 700, height = 300 }) => {
+const TimelineChart = ({ title, data, width = 700, height = 300 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -60,7 +61,12 @@ const TimelineChart = ({ data, width = 700, height = 300 }) => {
       .attr('fill', '#2d3748');
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default TimelineChart;

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
+import { Box, Text } from '@chakra-ui/react';
 
-const HistogramChart = ({ data, width = 600, height = 300 }) => {
+const HistogramChart = ({ title, data, width = 600, height = 300 }) => {
   const svgRef = useRef();
 
   useEffect(() => {
@@ -56,7 +57,12 @@ const HistogramChart = ({ data, width = 600, height = 300 }) => {
     chart.append('g').call(d3.axisLeft(y));
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={height} />;
+  return (
+    <Box>
+      <Text fontWeight="bold" mb={2}>{title}</Text>
+      <svg ref={svgRef} width={width} height={height} />
+    </Box>
+  );
 };
 
 export default HistogramChart;
